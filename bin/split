@@ -1,0 +1,19 @@
+#!/usr/bin/env osascript
+
+on run argv
+	set cmd to (item 1 of argv)
+
+	tell application "Ghostty"
+		set win to front window
+		set tab1 to selected tab of win 
+		set term to focused terminal of tab1 
+
+		set cfg to new surface configuration
+		set font size of cfg to 18
+		set initial input of cfg to "PS1=\n" & "clear\n" & cmd & "\n"
+
+		split term direction down with configuration cfg
+	end tell
+end run
+
+(* vim: ts=2 sw=2 *)
